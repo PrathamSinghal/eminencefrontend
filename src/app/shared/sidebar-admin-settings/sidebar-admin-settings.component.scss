@@ -1,0 +1,59 @@
+@import "../../../assets/scss/custom";
+
+.wrapper-sidebar {
+  .container-sidebar {
+    margin-top: 50px;
+    padding-top: 40px;
+    background: rgba(230, 246, 250, 1);
+    position: fixed;
+    height: 140%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0px !important;
+
+    .menu {
+      .menu-item {
+        color: $defaultTextColor;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 17.92px;
+        padding-bottom: 0.2em;
+        border-radius: 8px 0px 0px 8px !important;
+        // background-color: #C8ECF4;
+      }
+
+      .menu-item:hover {
+        background-color: #fdefa8;
+        border-radius: 10px;
+        padding-bottom: 0.2em;
+        // padding-left: 10px;
+      }
+    }
+  }
+}
+
+.accordion {
+  &-item {
+    background: transparent !important;
+    border: none !important;
+  }
+  &-button {
+    background: transparent;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 14px;
+    font-weight: 500;
+    color: $defaultTextColor;
+  }
+}
+
+.title-group {
+  span {
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.active-menu {
+  background-color: #fdefa8;
+}

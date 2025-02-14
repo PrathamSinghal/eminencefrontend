@@ -1,0 +1,26 @@
+.router-container {
+  left: 301px;
+  top: 78px;
+  right: 0;
+  bottom: 0;
+  width: calc(100% - 301px);
+  background-color: #f8feff;
+  padding: 10px;
+}
+.sidebar-close {
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  top: 78px;
+  width: 100%;
+  background-color: #f8feff;
+}
+
+.arrow-back {
+  color: #001d23;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 18px;
+}

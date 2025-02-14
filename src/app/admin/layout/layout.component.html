@@ -1,0 +1,5 @@
+<app-navigation *ngIf="showPortalLayout">
+    <router-outlet></router-outlet>
+</app-navigation>
+
+<router-outlet *ngIf="!showPortalLayout"></router-outlet>

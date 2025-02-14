@@ -1,0 +1,179 @@
+<div class="user-list-wrap" *appModulePermission="'Manage Task'; value: 'view'">
+  <app-comp-header [title]="'Manage Task'">
+    <button *appModulePermission="'Manage Task'; value: 'add'" style="width: fit-content;" type="button"
+      class="btn p-2 form-apply-button me-2 text-nowrap " (click)="moveTo('task/add-task')">
+      + Add Task
+    </button>
+  </app-comp-header>
+  @if(listoption){
+  <div class="d-flex mb-3">
+    <!-- <app-search-input (searchValue)="getSerachValue($event)" /> -->
+    <form [formGroup]="search_item">
+      <div class="d-flex">
+        <input class="form-control search-field searchWidth" type="text" placeholder="Search By Title"
+          formControlName="search" (keyup)="userSearch($event)" />
+        <!-- <button type="button" class="btn"
+            (click)="isSearchItem ? changeUserList(this.isRegisteredUser ? 'register' : 'guest') : ''">
+            {{ isSearchItem ? "Clear" : "Search" }}
+          </button> -->
+      </div>
+    </form>
+
+    <!-- Example single danger button -->
+    <!-- <div>
+        <button type="button" class="btn transparent-button light-blue-btn ms-3 me-1 " data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <img src="assets/images/icons/funnel.svg" /> Article Type
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item pointer" (click)="changeArticleType([])">Reset</a></li>
+          <li><a class="dropdown-item pointer" (click)="changeArticleType(['0'])">General</a></li>
+          <li><a class="dropdown-item pointer" (click)="changeArticleType(['1'])">Emergency</a></li>
+        </ul>
+      </div> -->
+
+    <button type="button" class="btn transparent-button" (click)="advancedFilterShow()">
+      <img src="assets/images/icons/advancedfilter.svg" /> Advanced Filter
+    </button>
+  </div>
+  }@else{ @if(selection.selected.length > 0){
+  <div class="table-action-btn d-flex align-items-center mb-2"
+    *appModulePermission="'Manage Task'; value: 'delete'">
+    <button class="primary-btn me-2" (click)="openDeletePopup()" [disabled]="isArticleListLoading">Delete</button>
+    <span class="d-inline-block selected-desc me-5 pointer">{{ selection.selected.length }} Selected</span>
+    <span class="d-inline-block selected-desc me-2 pointer" (click)="clearResonse()">
+      <img src="assets/images/icons/close-icon.svg" height="20" width="12" class="me-1" />
+      Clear response
+    </span>
+  </div>
+  } }
+
+  <div class="custom-table">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mat-custom-table">
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? toggleAllRows() : null"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+            [checked]="selection.hasValue() && isAllSelected()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation(); checkUncheck()"
+            (change)="$event ? selection.toggle(row) : null" [aria-label]="checkboxLabel(row)" [id]="row.sno"
+            [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sno">
+        <th mat-header-cell *matHeaderCellDef [style.white-space]="'nowrap'">
+          SNo.
+        </th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          {{pageNumber == 1 ? i+1 : (i + (pageNumber-1)*itemsPerPage + 1) }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef [style.white-space]="'nowrap'">
+          Action
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <img *appModulePermission="'Manage Task'; value: 'edit'"
+            src="assets/images/icons/pencil-line-edit.svg" alt="Edit" [width]="18" class="pointer"
+            (click)="moveToWithId({id:element?._id, url:'task/edit-task'})" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tasktitle">
+        <th mat-header-cell *matHeaderCellDef [style.white-space]="'nowrap'">
+          Title
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.title }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="taskdetails">
+        <th mat-header-cell *matHeaderCellDef [style.white-space]="'nowrap'">
+          Description
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element?.description }}
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="taskstatus">
+        <th mat-header-cell *matHeaderCellDef [style.white-space]="'nowrap'">
+          Status
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element?.status }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="10" class="empty-row-height">
+          <app-no-data-found />
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  @if (totalItems > 10) {
+
+  <div class="p-4">
+    <app-pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChange)="onPageChange($event)"
+      (pageItem)="changeItemPerPage($event)">
+    </app-pagination>
+  </div>
+  }
+</div>
+
+
+
+@if(isAdvanceFilter){
+<div class="modal show fade d-block modal-lg" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Advance Filters</h5>
+        <button type="button" class="btn-close" (click)="isAdvanceFilter = !isAdvanceFilter"></button>
+      </div>
+
+      <div class="modal-body">
+        <form class="modal-form" [formGroup]="search_item_advanced">
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <div class="mb-3">
+                <label class="form-label">Status</label>
+                <ng-multiselect-dropdown [placeholder]="'Select Status'" [settings]="dropdownSettingsBudget"
+                  [data]="mediaList" formControlName="status" (onSelect)="{}" (onSelectAll)="{}">
+                </ng-multiselect-dropdown>
+              </div>
+            </div>
+          </div>
+
+          <div class="button d-flex justify-content-end">
+            <button type="button" class="btn p-2 form-apply-button me-2" (click)="resetFilter()">
+              Reset
+            </button>
+            <button type="button" class="btn p-2 form-apply-button" (click)="advancedFilter()">
+              Apply
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+
+<!-- ============= Delete Popup ============ -->
+<app-shared-popup *ngIf="deletePopupFlag" [details]="deletePopupDetails" [title]="deletePopupTitle"
+  (status)="deletePopupStatus($event)"></app-shared-popup>

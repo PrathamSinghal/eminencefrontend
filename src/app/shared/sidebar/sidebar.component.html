@@ -1,0 +1,91 @@
+<div class="wrapper-sidebar" *ngIf="sidebar == 'normal'">
+  <div class="container-sidebar">
+    <div
+      class="d-flex flex-column  p-3"
+      style="width: 300px; height: 84vh; overflow-y: auto;"
+    >
+      <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi pe-none me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+                <span class="fs-4 text-black">Eminence</span>
+            </a> -->
+      <ul class="nav nav-pills menu flex-column mb-2">
+        @for (menu of sideMenu; track $index) { @if(menu.child.length == 0){
+        <li class="nav-item ms-1 me-1" *ngIf="menu?.isAllowed" [ngClass]="{'active-menu-parent': activeMenu === menu?.name}" (click)="setActiveMenu(menu?.name)">
+          <a
+            class="nav-link menu-item pointer p-2 m-1 me-0"
+            (click)="moveTo(menu?.path)"
+          >
+            <img
+              [src]="'assets/images/icons/' + menu.icon"
+              alt=""
+              height="16px"
+              width="16px"
+            />
+            {{ menu?.name }} 
+          </a>
+        </li>
+        } @else {
+        <li class="nav-item ms-1 me-1" *ngIf="menu?.isAllowed">
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item p-0 m-0">
+              <div
+                class="accordion-header menu-item p-2 m-1 me-0"
+                [id]="trimSpace(menu?.name)"
+              >
+                <button
+                  class="accordion-button p-0 m-0 ps-0 p-3 collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#' + $index + trimSpace(menu?.name)"
+                  aria-expanded="true"
+                  [attr.aria-controls]="trimSpace(menu?.name)"
+                  style="padding: 0px !important;"
+                >
+                  <img
+                    [src]="'assets/images/icons/' + menu.icon"
+                    alt=""
+                    height="16px"
+                    width="16px"
+                    class="me-2"
+                  />
+                  {{ menu?.name }}
+                </button>
+              </div>
+              <div
+                id="{{ $index }}{{ trimSpace(menu?.name) }}"
+                class="accordion-collapse collapse"
+                [attr.aria-labelledby]="trimSpace(menu?.name)"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  <li class="nav-item ms-1 me-1" *ngFor="let child of menu.child" [ngClass]="{'active-menu-parent': activeMenu === child?.name}" (click)="setActiveMenu(child?.name)">
+                    <a
+                      class="nav-link menu-item pointer p-0 p-2 m-1 me-0"
+                      aria-current="page"
+                      (click)="moveTo(child?.path)"
+                      style="padding: 10px !important"
+                      *ngIf="child?.isAllowed"
+                    >
+                      <!-- <img
+                        [src]="'assets/images/icons/' + child.icon"
+                        alt=""
+                        height="16px"
+                        width="16px"
+                      /> -->
+                      {{ child.name }}
+                    </a>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        } }
+      </ul>
+    </div>
+  </div>
+</div>
+
+<app-sidebar-admin-settings *ngIf="sidebar == 'admin-settings'"></app-sidebar-admin-settings>

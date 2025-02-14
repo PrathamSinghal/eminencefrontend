@@ -1,0 +1,53 @@
+<div class="user-list-wrap">
+  <div class="user-list-container p-2">
+    <div class="brief-user-info mt-3">
+      <div class="custom-form">
+        <div class="row">
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="input-group-titile mb-4">My Profile</div>
+            <div class="profile-picture mb-5">
+              <input type="file" #profile class="d-none" (change)="onProfilePictureChange($event)" />
+              <img class="pic pointer" [src]="profilePictureUrl" alt="profile" (click)="profile.click()"/>
+              <img class="pic-upload-icon pointer" src="assets/images/icons/camera-profile.svg" alt="profile"
+                (click)="profile.click()" />
+            </div>
+            <div class="row">
+              <div class="mb-3 col-6">
+                <label for="email" class="form-label lable">First Name</label>
+                <input type="text" class="form-control form-control-lg" id="email" placeholder="First Name"
+                  formControlName="firstName" required />
+                <div *ngIf="profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched"
+                  class="text-danger">
+                  <small *ngIf="profileForm.get('firstName')?.errors?.['required']">This is required.</small>
+                  <small *ngIf="profileForm.get('firstName')?.errors?.['minlength']">Minimum 2 characters are
+                    required.</small>
+                  <small *ngIf="profileForm.get('firstName')?.errors?.['maxlength']">MAximum 50 characters are
+                    required.</small>
+                </div>
+              </div>
+              <div class="mb-3 col-6">
+                <label for="email" class="form-label lable">Last Name</label>
+                <input type="text" class="form-control form-control-lg" id="email" placeholder="Last Name"
+                  formControlName="lastName" />
+              </div>
+              <div class="mb-3 col-6">
+                <label for="email" class="form-label">Email ID</label>
+                <input type="email" class="form-control form-control-lg" id="email" placeholder="Email ID"
+                  formControlName="email" required />
+                <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched"
+                  class="text-danger">
+                  <small *ngIf="profileForm.get('email')?.errors?.['required']">This is required.</small>
+                  <small *ngIf="profileForm.get('email')?.invalid">Please enter a vaid email.</small>
+    
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div>
+          <button class="primary-btn" (click)="onSubmit()">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

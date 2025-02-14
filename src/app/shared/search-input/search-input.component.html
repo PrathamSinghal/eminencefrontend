@@ -1,0 +1,10 @@
+<div class="table-search-input">
+    <form >
+      <div class="d-flex">
+        <input class="form-control search-field" type="text" placeholder="Search"  #search/>
+        <button type="button" class="btn" (click)="userSearch()">
+          {{ isSearchItem ? "Clear" : "Search" }}
+        </button>
+      </div>
+    </form>
+  </div>

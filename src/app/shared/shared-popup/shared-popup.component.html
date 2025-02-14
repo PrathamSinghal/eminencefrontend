@@ -1,0 +1,19 @@
+<div class="popup-overlay position-fixed d-flex justify-content-center align-items-center">
+  <div class="popup-container  p-3" [style]="{ width: width, minHeight: '150px' , maxHeight:'max-content'}">
+    <div class="pb-3 d-flex justify-content-end align-items-end">
+      <img src="assets/images/Close.png" alt="close" class="pointer" (click)="status.emit(false)" />
+    </div>
+    <div>
+      <h5>{{title ? title : 'Delete Users'}}</h5>
+      <p>
+        {{details ? details : 'Are you sure you want to delete users? Deleting them will permanently remove all their
+        data.'}}
+      </p>
+    </div>
+    <div class="d-flex justify-content-center align-items-center pb-3">
+      <button type="button" class="btn btn-cancel" (click)="status.emit(false)">Cancel</button>
+      <button type="button" class="btn btn-confirm ms-2" (click)="status.emit(true)">Confirm</button>
+    </div>
+  </div>
+
+</div>

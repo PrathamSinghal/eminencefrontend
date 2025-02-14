@@ -1,0 +1,223 @@
+@import "../../../../../assets/scss/custom";
+
+.add-article-header {
+  background: $topbarback;
+  min-height: 40px;
+  font-size: 1.2em;
+}
+
+.user-list-wrap {
+  .user-list-container {
+    .arrow-back {
+      color: #001d23;
+    }
+    .title {
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .brief-user-info {
+      background-color: #e6f6fa;
+      padding: 20px;
+      border: 1px solid #6ecbe08c;
+      border-radius: 8px;
+      color: #001d23;
+
+      .input-group-titile {
+        font-size: 14px;
+        font-weight: 500;
+        color: #484848;
+      }
+
+      .custom-form {
+        label {
+          font-size: 16px;
+          font-weight: 500;
+          color: #24363a;
+        }
+        label,
+        input {
+          min-width: 328px;
+          max-width: 3px;
+        }
+      }
+    }
+
+    .detail-info {
+      // border: 1px solid rgba(0, 58, 68, 0.07);
+      // border-radius: 8px;
+      // padding: 5px;
+
+      .table-action-btn {
+        .selected-desc {
+          font-weight: 500;
+          font-size: 14px;
+          color: #1a5664;
+        }
+      }
+    }
+  }
+}
+
+.custom-table {
+  height: fit-content;
+  overflow-y: auto;
+  display: block;
+  table {
+    thead {
+      tr {
+        th {
+          background-color: #ccedf4;
+          font-size: 16px;
+          font-weight: 500;
+        }
+
+        td {
+          font-size: 12px;
+          font-weight: 400;
+          color: #484848;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          font-size: 12px;
+          font-weight: 400;
+          color: #484848;
+        }
+      }
+    }
+  }
+}
+
+.form-switch {
+  .form-check-input {
+    cursor: pointer;
+    height: 20px;
+    width: 40px;
+    &:checked {
+      background-color: $green;
+      border: $green;
+    }
+  }
+}
+
+.position-relative {
+  position: relative;
+}
+
+.edit-popup {
+  font-family: "Lora";
+  position: absolute;
+  right: 270px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border: 1px solid #29a4c0a8;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  z-index: 999;
+  padding: 15px;
+  animation: fadeIn 0.3s ease-in-out;
+  .card {
+    border: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+// ======= Hide ng-multiselect-dropdown checkboxes  ========
+:host ::ng-deep .multiselect-item-checkbox input[type="checkbox"] + div:before {
+  display: none !important;
+}
+:host ::ng-deep .multiselect-item-checkbox input[type="checkbox"] + div:after {
+  display: none !important;
+}
+
+
+.filter-area {
+//   background-color: $editorsidebarback;
+//   height: 85vh;
+//   width: 100%;
+//   box-shadow: -4px 4px 12px 0px #29a4c033;
+  &-header {
+    font-size: 1.2em;
+    border-bottom: 1px solid #29a4c08c;
+
+    .upload-box {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #66b2b2;
+      border-radius: 8px;
+      padding: 10px;
+      background-color: $white;
+      cursor: pointer;
+      border-width: 1px, 0px, 1px, 1px;
+
+      border-style: solid;
+
+      border-color: #6ecbe08c;
+    }
+
+    .upload-box:hover {
+      border-color: #0c8282;
+    }
+
+    .upload-box img {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+    }
+
+    .upload-box span {
+      color: #007a7a;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .upload-box input {
+      display: none;
+    }
+
+    .upload-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      background-color: #e6f3f3;
+      border-radius: 50%;
+    }
+
+    .upload-icon:before {
+      content: "+";
+      font-size: 20px;
+      color: #007a7a;
+    }
+  }
+
+  .upload-box {
+    border: 1px solid #66b2b2;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: $white;
+    cursor: pointer;
+    border-width: 1px, 0px, 1px, 1px;
+    border-style: solid;
+    border-color: #6ecbe08c;
+  }
+}

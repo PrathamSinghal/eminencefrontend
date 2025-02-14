@@ -1,0 +1,72 @@
+<div class="user-list-wrap" *appModulePermission="'Manage Task'; value: 'view'">
+  <div class="user-list-container p-2">
+    <!-- <div class="title d-flex align-items-center pointer" (click)="moveTo('security/departments-list')">
+              <button class="primary-btn">Back</button>
+          </div> -->
+    <!-- <button class="primary-btn"> -->
+    <div class="title d-flex align-items-center pointer" (click)="moveTo('task/tasks-list')">
+      <i class="material-icons arrow-back d-inline-block" style="color: #000">arrow_back</i>
+      <span class="text mx-2 d-inline-block">
+        {{this.taskId ? 'Edit Task' : 'Add Task'}}</span>
+    </div>
+    <!-- </button> -->
+    <ng-container *appModulePermission="'Manage Task'; value: 'add'">
+      <div class="brief-user-info mt-3">
+        <form [formGroup]="advertisementForm" (ngSubmit)="onSubmit()">
+          <div class="custom-form">
+            <div class="input-group-titile mb-3">Task Details</div>
+            <div class="row position-relative">
+              <div class="loader" *ngIf="isAdvAddLoading">
+                <app-spinner></app-spinner>
+              </div>
+              <div class="input-group-titile mb-3"></div>
+              <div class="row">
+                <div class="mb-3 col-6">
+                  <label for="departmentTitle" class="form-label">Add Title</label>
+                  <input formControlName="title" type="text" class="form-control form-control-lg" id="title"
+                    placeholder="Enter Title" required />
+                  <div *ngIf="advertisementForm.get('title')?.touched && advertisementForm.get('title')?.invalid"
+                    class="text-danger">
+                    This is required.
+                  </div>
+                  <div
+                    *ngIf="advertisementForm.get('title')?.touched && advertisementForm.get('title')?.errors?.['maxlength']"
+                    class="text-danger">
+                    Category name cannot be more than 50 characters.
+                  </div>
+                </div>
+                <div class="mb-3 col-6">
+                  <label for="departmentTitle" class="form-label">Description</label>
+                  <input formControlName="description" type="text" class="form-control form-control-lg" id="description"
+                    placeholder="Description" required />
+                  <div *ngIf="advertisementForm.get('description')?.touched && advertisementForm.get('description')?.invalid"
+                    class="text-danger">
+                    This is required.
+                  </div>
+                  <div class="text-danger" *ngIf="advertisementForm.get('description')?.errors?.['maxlength']">Description name cannot be more than 200 characters.</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-3 col-6">
+                  <div class="custom-input-width">
+                    <label class="form-label">Status</label>
+                    <ng-multiselect-dropdown [placeholder]="'Status'" [settings]="dropdownSettingsAdvertiser"
+                      [data]="mediaList" formControlName="status" (onSelect)="({})" (onSelectAll)="({})">
+                    </ng-multiselect-dropdown>
+                    <!-- <div
+                      *ngIf="advertisementForm.get('advertiser')?.touched && advertisementForm.get('advertiser')?.invalid"
+                      class="text-danger">
+                      This is required.
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </form>
+        <button class="primary-btn" (click)="onSubmit()">Save</button>
+      </div>
+    </ng-container>
+  </div>
+</div>

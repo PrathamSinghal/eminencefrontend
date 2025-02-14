@@ -1,0 +1,1 @@
+import{aa as e,ka as n}from"./chunk-KB2XUKB5.js";var p=(()=>{class t{static{this.\u0275fac=function(a){return new(a||t)}}static{this.\u0275mod=n({type:t})}static{this.\u0275inj=e({})}}return t})();export{p as a};

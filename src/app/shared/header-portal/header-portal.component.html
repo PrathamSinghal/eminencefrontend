@@ -1,0 +1,68 @@
+<div class="wrapper-header-portal">
+    <div class="container-header-portal">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center">
+                    <div class="logo py-1">
+                        <img *ngIf="sidebar === 'normal'" src="assets/images/logo/logo.svg" alt="">
+                        <img *ngIf="sidebar === 'admin-settings'" src="assets/images/logo/logo_without_text.svg" alt="">
+                    </div>
+                    <div *ngIf="sidebar === 'admin-settings'">
+                        <button class="moveBack ms-4">
+                            <div class="title d-flex align-items-center pointer" (click)="moveBack()">
+                                <i class="material-icons arrow-back d-inline-block" style="color: #181818;">arrow_back</i>
+                                <span class="text mx-2 d-inline-block">Back to Home</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="profile">
+                    <div class="dropdown profile-icon text-end">
+                        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img [src]="!!user?.profileImage ? user?.profileImage : userImg" alt="mdo" width="53"
+                                height="53" class="rounded-circle">
+                        </a>
+                        <div class="dropdown-menu text-small"
+                            style="margin-left: -252px; border-radius: 12px; width: 340px;">
+                            <p class="text-end pointer mb-3"><img src="assets/images/icons/close-icon.svg" alt=""></p>
+                            <div class="card w-100">
+                                <div class="card-body m-0 p-0">
+                                    <div class="profile-details d-flex align-items-center">
+                                        <img [src]="!!user?.profileImage ? user?.profileImage : userImg" alt=""
+                                            height="64px" width="64px">
+                                        <div class="profile-desc">
+                                            <p class="profile-designation p-0 m-0">{{user?.userType == 'user' ? 'User'
+                                                : 'Member'}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="settings mt-4">
+                                        <span class="d-inline-block settings-title mb-4">Admin Settings</span>
+                                        <ul class="profile-menu">
+                                            <li>
+                                                <p class="pointer mb-2" (click)="moveTo('settings/profile')">
+                                                    <img src="assets/images/icons/user.svg" alt="">
+                                                    <span class="d-inline-block ms-3 pointer">My Profile</span>
+                                                </p>
+                                            </li>
+                                            <li class="logout pt-2">
+                                                <p class="pointer mb-2" (click)="onSignout()">
+                                                    <img src="assets/images/icons/sign-out-black.svg" alt="">
+                                                    <span class="d-inline-block ms-3 pointer">Logout</span>
+                                                </p>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

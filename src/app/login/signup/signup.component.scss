@@ -1,0 +1,118 @@
+.signin-wrap {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180.26deg, #e6f6fa 0.24%, #088fac 112.74%);
+    overflow: hidden;
+  
+    .signin-container {
+      height: 100%;
+      width: 100%;
+      background: url("../../../assets/images/signin/signin-map.svg");
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-position: bottom center;
+      overflow: hidden;
+      background-repeat: no-repeat;
+  
+      .signin-form {
+        width: 540px;
+        justify-content: center;
+        .logo {
+          width: 100%;
+          margin-bottom: 30px;
+        }
+        .signin {
+          background-color: white;
+          border-radius: 10px;
+          padding: 40px, 40px, 45px, 40px;
+          form {
+            padding: 35px;
+            .signin-btn {
+              background: linear-gradient(
+                180.01deg,
+                #5fb8cb -65.68%,
+                #295963 100%
+              );
+              border-radius: 6px;
+              border-color: inherit;
+              padding: 14px, 49px, 14px, 49px;
+              height: 52px;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .singin-left {
+    width: 100%; 
+    height: auto; 
+    background-image: url("../../../assets/images/login-left-bg.svg"); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+  }
+  .signin-right {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f3fdff;
+    overflow: hidden;
+  
+    .signin-container {
+      height: 100%;
+      width: 100%;
+      // background: url('../../../assets/images/signin/signin-map.svg');
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-position: bottom center;
+      overflow: hidden;
+      background-repeat: no-repeat;
+  
+      .signin-form {
+        width: 540px;
+        justify-content: center;
+        .logo {
+          width: 100%;
+          margin-bottom: 30px;
+        }
+        .signin {
+          background-color: #dbf2f8;
+          border-radius: 10px;
+          padding: 40px, 40px, 45px, 40px;
+          form {
+            padding: 35px;
+            .signin-btn {
+              background: linear-gradient(
+                180.01deg,
+                #5fb8cb -65.68%,
+                #295963 100%
+              );
+              border-radius: 6px;
+              border-color: inherit;
+              padding: 14px, 49px, 14px, 49px;
+              height: 52px;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .field-pass {
+    &-icon {
+      right: 0;
+      left: 93%;
+      margin-top: -2em;
+    }
+  }
+  

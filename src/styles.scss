@@ -1,0 +1,456 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/scss/fonts";
+@import "./assets/scss/main";
+@import "./assets/scss/custom";
+
+html,
+body {
+  height: 100%;
+  font-family: "Lora" !important;
+  font-size: 16px;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+  color: $defaultTextColor;
+  scrollbar-width: thin;
+  scrollbar-color: #088fac;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  @include media-breakpoint-down(lg) {
+    font-size: 14px;
+  }
+
+  @include media-breakpoint-down(md) {
+    font-size: 13px;
+  }
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+.noPointer {
+  cursor: text !important;
+}
+
+/* Change scrollbar track */
+div::-webkit-scrollbar {
+  width: 10px !important;
+}
+
+div::-webkit-scrollbar-track {
+  background: #f1f1f1 !important;
+}
+
+/* Change scrollbar thumb */
+div::-webkit-scrollbar-thumb {
+  background-color: #088fac !important;
+  border-radius: 10px !important;
+  border: 2px solid #f1f1f1 !important;
+}
+
+/* Change scrollbar thumb on hover */
+div::-webkit-scrollbar-thumb:hover {
+  background-color: #088fac !important;
+}
+
+.primary-btn {
+  background: linear-gradient(180.01deg, #5fb8cb -65.68%, #295963 100%);
+  display: flex;
+  border: 1px solid #d9d9d9;
+  padding: 7px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+}
+.secondary-btn {
+  background: #ffffff;
+  display: flex;
+  border: 1px solid #484848;
+  padding: 7px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #484848;
+}
+
+.material-icons {
+  color: $iconcolor;
+  font-size: 23px;
+}
+
+input::placeholder {
+  font-size: 15px;
+}
+
+.pointer-cursor {
+  cursor: pointer;
+}
+
+.form {
+  &-label {
+    font-weight: 400;
+  }
+
+  &-control {
+    &-lg {
+      font-size: 1.1rem !important;
+    }
+  }
+}
+
+.btn-primary {
+  font-size: 1.2em;
+}
+
+mat-error {
+  color: $danger;
+  font-size: 14px;
+  margin-top: 7px;
+}
+
+.custom-table {
+  position: relative;
+  width: 100% !important;
+  overflow: auto !important;
+}
+
+.mat-custom-table {
+  .mat-mdc-header-row {
+    font-family: "Lora" !important;
+  }
+
+  .mat-mdc-header-row.mdc-data-table__header-row {
+    background: $tablehead;
+    height: 41px;
+    font-weight: 800 !important;
+  }
+
+  .mat {
+    &-mdc {
+      &-cell {
+        border-color: #57c5dd38;
+      }
+
+      &-header {
+        &-cell {
+          border-color: #57c5dd38;
+
+          &:first-child {
+            width: 10px !important;
+            padding-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .empty-row-height {
+    height: 400px;
+    background: $white !important;
+  }
+}
+
+.mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background,
+.mdc-checkbox__native-control:enabled:indeterminate
+  ~ .mdc-checkbox__background {
+  background-color: $checkboxcolor !important;
+  border: 2px solid $checkboxcolor !important;
+}
+
+.not-selected-button {
+  button {
+    font-size: 0.9em;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+
+    &:not(.active-button) {
+      background-color: transparent;
+      border-top: 1px solid $gray;
+      border-left: 1px solid $gray;
+      border-right: 1px solid $gray;
+    }
+  }
+
+  .active-button {
+    background-color: $tablehead;
+    border: none;
+    color: $defaultTextColor;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .transparent-button {
+    background-color: transparent !important;
+    border: none !important;
+  }
+}
+
+.table-search-input {
+  button {
+    background: $buttonBackground;
+    color: $white;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 300px;
+
+    &:before {
+      content: "helloo";
+      position: absolute;
+    }
+  }
+}
+
+.search-field::placeholder {
+  color: #666;
+  content: "jjj" !important;
+}
+
+.bg-light-green {
+  background-color: $lightgreen;
+}
+
+.bg-light-red {
+  background-color: $lightred;
+}
+
+.form {
+  &-apply-button {
+    background: $buttonBackground !important;
+    color: $white;
+    width: 130px;
+  }
+}
+
+.published {
+  @include status-back-color($lightgreen, $green);
+  @include status-class;
+}
+
+.draft {
+  @include status-back-color($draftback, $textcolor);
+  @include status-class;
+  font-weight: 400;
+}
+
+.emergency {
+  @include status-back-color($lightyellow, $yellowuppertext);
+  @include status-class;
+  width: 90px;
+}
+
+.close {
+  @include status-back-color(#FF8A8A , white);
+  @include status-class;
+  font-weight: 400;
+}
+
+// .form-select {
+//   height: 45px;
+//   padding: 8px 16px;
+// }
+
+// ========= Custom ng-multiselect-dropdown start =========
+
+.custom-input-width {
+  width: 328px !important;
+}
+
+.multiselect-dropdown {
+  background-color: #ffffff;
+  // height: calc(1.5em + 1rem + calc(var(--bs-border-width)* 2)) !important;
+  // border-radius: var(--bs-border-radius-lg) !important;
+
+  .dropdown-btn {
+    // border: 1px solid #6ECBE08C !important;
+    // #C8ECF4
+  }
+}
+
+// ========= Custom ng-multiselect-dropdown end =========
+
+.NgxEditor {
+  height: calc(85vh - 88px) !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+.NgxEditor__Content {
+  height: calc(85vh - 88px) !important;
+  overflow: auto;
+}
+
+.NgxEditor__MenuBar {
+  padding: 11px !important;
+}
+
+.loader {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+// ================ Team and Department New Button Action Start =================
+// ======= New Button Action ========
+.dropdown-mng-btn {
+  font-weight: 700;
+  font-size: 12px;
+  color: #023e4c;
+  border: 1px solid #bcd8de;
+  background-color: #bdf3ff;
+  border-radius: 4px;
+  padding: 0px;
+  &:hover {
+    box-shadow: -1px -1px 8px 2px #00000029;
+    color: #023e4c;
+  }
+
+  .btn-text {
+    width: 100px;
+    padding: 0px 0px 0px 5px;
+    transition: box-shadow 0.3s ease;
+    margin-right: 5px;
+  }
+
+  .right-arrow {
+    height: 100%;
+    background-color: #ffffff;
+    border: none;
+    // border-left: 1px solid #BCD8DE;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: 5px;
+    // margin-left: 5px;
+    box-shadow: -1px -1px 4px 0px #00000012;
+    transition: box-shadow 0.3s ease;
+    &:hover {
+      box-shadow: -1px -1px 8px 2px #00000029;
+      background-color: #fdefa8;
+    }
+  }
+}
+
+.dropdown-expire-btn {
+  font-weight: 700;
+  font-size: 12px;
+  color: #023e4c;
+  border: 1px solid #ff41418c;
+  background-color: #ffd8d8;
+  border-radius: 4px;
+  padding: 0px;
+
+  .btn-text {
+    width: 100px;
+    padding: 0px 0px 0px 5px;
+  }
+
+  .right-arrow {
+    height: 100%;
+    background-color: #ffffff;
+    border: none;
+    // border-left: 1px solid #FF41418C;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: 5px;
+    margin-left: 5px;
+    box-shadow: -1px -1px 4px 0px #00000012;
+    transition: box-shadow 0.3s ease;
+    &:hover {
+      box-shadow: -1px -1px 8px 2px #00000029;
+      background-color: #fdefa8;
+    }
+  }
+}
+.dropdown-mng-btn2 {
+  font-weight: 700;
+  font-size: 12px;
+  color: #023e4c;
+  border: 1px solid #bcd8de;
+  background-color: #bdf3ff;
+  border-radius: 4px;
+  padding: 0px;
+
+  .btn-text {
+    width: 100px;
+    padding: 0px 0px 0px 5px;
+  }
+
+  .right-arrow {
+    height: 100%;
+    background-color: #ffffff;
+    border: none;
+    // border-left: 1px solid #1199268C;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: 5px;
+    margin-left: 5px;
+    box-shadow: -1px -1px 4px 0px #00000012;
+    transition: box-shadow 0.3s ease;
+    &:hover {
+      box-shadow: -1px -1px 8px 2px #00000029;
+      background-color: #fdefa8;
+    }
+  }
+}
+.dropdown-invite-sent-btn {
+  font-weight: 700;
+  font-size: 12px;
+  color: #023e4c;
+  border: 1px solid #1199268c;
+  background-color: #e1f6df;
+  border-radius: 4px;
+  padding: 0px;
+
+  .btn-text {
+    width: 100px;
+    padding: 0px 0px 0px 5px;
+  }
+
+  .right-arrow {
+    height: 100%;
+    background-color: #ffffff;
+    border: none;
+    // border-left: 1px solid #1199268C;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: 5px;
+    margin-left: 5px;
+    box-shadow: -1px -1px 4px 0px #00000012;
+    transition: box-shadow 0.3s ease;
+    &:hover {
+      box-shadow: -1px -1px 8px 2px #00000029;
+      background-color: #fdefa8;
+    }
+  }
+}
+
+.dropdown-menu {
+  box-shadow: 6px 4px 10.6px 0px rgba(0, 168, 205, 0.18);
+  border: none;
+  padding: 15px;
+  .dropdown-item {
+    font-family: "Lora";
+    font-size: 12px;
+    font-weight: 500;
+    &:hover {
+      background-color: #fdefa8;
+      border-radius: 4px;
+    }
+  }
+}
+
+.show-dropdown {
+  position: absolute;
+  inset: 0px auto auto 0px;
+  margin: 0px;
+  transform: translate(210px, 85px);
+}
+// ================ Team and Department New Button Action End ===================

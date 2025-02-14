@@ -1,0 +1,108 @@
+<div class="d-flex w-100 justify-content-center">
+  @if(totalPages <= 10) {
+  <nav aria-label="Page navigation example mt-5">
+    <ul class="pagination mb-0">
+      <li class="page-item">
+        <a
+          class="page-link"
+          (click)="prev()"
+          [class.disable-box]="currentPage == 1"
+        >
+          < Back</a
+        >
+      </li>
+      @for (item of itemsArray; track $index;) {
+      <li class="page-item">
+        <a
+          class="page-link"
+          [class.active-box]="currentPage == $index + 1"
+          (click)="customPage(item)"
+          >{{ item }}</a
+        >
+      </li>
+      }
+      <li class="page-item">
+        <a
+          class="page-link"
+          (click)="next()"
+          [class.disable-box]="currentPage == totalPages"
+          >Next >
+        </a>
+      </li>
+    </ul>
+  </nav>
+  } @else {
+  <div class="pagination">
+    <!-- Previous button -->
+    <a
+      class="page-link"
+      [class.disable-box]="currentPage == 1"
+      (click)="onPageChange(currentPage - 1)"
+      >< Back</a
+    >
+
+    <!-- First page link and dots before current page -->
+    <a
+      class="page-link mx-2"
+      (click)="onPageChange(1)"
+      [ngClass]="{ 'active-box': 1 === currentPage }"
+      >1</a
+    >
+    <span class="dots me-2" *ngIf="currentPage > 2">...</span>
+
+    <!-- Pages around the current page -->
+    @for(page of getVisiblePages();track $index;){ @if($index != 0 && $index !=
+    getVisiblePages().length){
+    <a
+      class="page-link me-2"
+      [ngClass]="{ 'active-box': page === currentPage }"
+      (click)="onPageChange(page)"
+      >{{ page }}</a
+    >
+    } }
+
+    <!-- Dots after the current page and last page link -->
+    <span class="dots me-2" *ngIf="currentPage < totalPages - 2">...</span>
+    <a
+      class="page-link"
+      *ngIf="currentPage < totalPages - 1"
+      (click)="onPageChange(totalPages)"
+      >{{ totalPages }}</a
+    >
+
+    <!-- Next button -->
+    <a
+      *ngIf="currentPage < totalPages"
+      (click)="onPageChange(currentPage + 1)"
+      class="page-link ms-2"
+      >Next >
+    </a>
+  </div>
+  }
+
+  <div class="d-flex align-items-center ms-4">
+    <p class="mb-0 pe-3">Result per page</p>
+    <div>
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        [(ngModel)]="itemsPerPage"
+        (change)="changePageNumberCount($event)"
+      >
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="d-flex align-items-center ms-4">
+    <p class="mb-0 pe-2">
+      {{
+        currentPage == 1 ? currentPage : (currentPage - 1) * itemsPerPage + 1
+      }}-{{itemsArray.length == currentPage ? totalItems : itemsPerPage * currentPage}} of {{totalItems}}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+@import '../../../assets/scss/custom';
+
+.pagination{
+    .page{
+        
+        &-item{
+         margin-left: 5px;
+         margin-right: 5px;
+        }
+        &-link{
+            cursor: pointer;
+            border: 1px solid $gray5;
+            background-color: transparent;
+            border-radius: 3px;
+            color: $defaultTextColor;
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+    }
+    }
+
+
+
+.active-box{
+    background-color: $checkboxcolor !important;
+    color:$white !important;
+}
+
+.disable-box{
+    background-color: transparent;
+    color:$gray5 !important;
+    border:none !important;
+}
+
+
+  
+  .pagination .dots {
+    pointer-events: none;
+    cursor: default;
+  }

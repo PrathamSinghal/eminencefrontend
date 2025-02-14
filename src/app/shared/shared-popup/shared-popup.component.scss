@@ -1,0 +1,40 @@
+@import '../../../assets/scss/custom';
+
+.popup
+{
+&-overlay{
+    background-color: $popupbackground;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 999;
+}
+&-container{
+    background-color: $white;
+    z-index: 9999;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    bottom: 25%;
+    border-radius: 10px;
+
+    .btn{
+        width: 140px;
+        &-cancel{
+            background-color: transparent;
+            border: 1px solid $black;
+            font-weight: 700;
+        }
+        &-confirm{
+            background-color: $danger;
+            color: $white;
+
+        }
+    }
+
+}
+}
+

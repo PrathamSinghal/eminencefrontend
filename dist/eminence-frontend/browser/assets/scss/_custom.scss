@@ -1,0 +1,57 @@
+$defaultTextColor: #181818;
+$lora: 'Lora';
+$gray: #F3F3F3;
+$gray2: #bfbfbf;
+$gray3: #F5F5F5;
+$gray4: #E8E8E8;
+$gray5: #E5E5E5;
+$white: #ffffff;
+$black: #212529;
+$blue: #003399;
+$headerborder: #B7B7B7;
+$yellow: #FFC727;
+$orange: #FF6600;
+$process: #757575;
+$darkblue: #022A7B;
+$scrollbar: #d6d6d6;
+$scrollbartrack: #CECECE;
+$select: #5A76AE;
+$iconcolor:lightgrey;
+$danger:red;
+$tablehead:#CCEDF4;
+$checkboxcolor:#035d70;
+$green:#119926;
+$buttonBackground:linear-gradient(180.01deg, #5FB8CB -65.68%, #295963 100%);
+$popupback:#f5fcfe;
+$popupbackground:#00000066;
+$lightgreen:#E1F6DF;
+$lightred:#FFD8D8;
+$lightblue:#DAF3F8;
+$darkblue:#29A4C0;
+$borderbuttn:#1A56648C;
+$draftback:#87878733;
+$textcolor:#484848;
+$topbarback:#E6F6FA;
+$editorsidebarback:#edf6f8;
+
+$lightyellow:#FEF6CF;
+$yellowuppertext:#C9B54E;
+$yellowbgcolor1:#FDE374B2;
+
+
+@mixin light-blue-btn($color:$borderbuttn) {
+    background-color: $lightblue;
+    border: 1px solid $color ;
+  }
+
+  @mixin status-class{
+    text-align: center;
+    padding: 3px 5px;
+    width: 88px;
+    border-radius: 6px;
+  }
+
+  @mixin status-back-color($background,$color){
+    background-color: $background;
+    color: $color;
+  }

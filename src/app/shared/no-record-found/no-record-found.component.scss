@@ -1,0 +1,15 @@
+.record-container {
+    position: relative;
+    height: 500px;
+
+    .card {
+        background-color: transparent;
+        border: none;
+    }
+
+    .card-text {
+        color: #1A5664;
+        font-weight: 500;
+        font-size: 18px;
+    }
+}

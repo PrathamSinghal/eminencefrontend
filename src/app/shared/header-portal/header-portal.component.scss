@@ -1,0 +1,115 @@
+.wrapper-header-portal {
+    position: fixed;
+    right: 0;
+    // left: 280px;
+    left: 0;
+    z-index: 999;
+
+    .container-header-portal {
+        .navbar {
+            background: linear-gradient(90deg, #E6F6FA -17.01%, #088FAC 100%) !important;
+
+
+        }
+
+        .logo {
+            padding-left: 17px;
+        }
+
+        .profile {
+            .profile-icon {
+                padding-right: 17px;
+
+                .dropdown-toggle::after {
+                    // content: "sandeep";
+                    height: 24px;
+                    width: 24px;
+                    background: url('../../../assets/images/icons/caret-down.svg');
+                    background-repeat: no-repeat;
+                    border: 0px;
+                    margin-left: 0.255em;
+                    vertical-align: -0.740em;
+                }
+
+                .dropdown-menu {
+                    box-shadow: 6px 4px 10.6px 0px rgba(0, 168, 205, 0.18);
+                    border: none;
+                    padding: 15px;
+
+                }
+
+
+            }
+
+            .card {
+                background-color: transparent;
+                border: none;
+                margin: 0;
+                padding: 0;
+
+                .profile-details {
+                    background: rgba(0, 168, 205, 0.03);
+                    height: 80px;
+                    padding: 8px 4px 8px 4px;
+                    border-radius: 8px;
+                    border: 1px solid #088FAC;
+
+                    img {
+                        border-radius: 100%;
+                    }
+
+                    .profile-desc {
+                        padding-left: 20px;
+
+                        .profile-name {
+                            font-weight: bold;
+                            font-size: 18px;
+                            color: #181818;
+
+
+                        }
+
+                        .profile-designation {
+                            color: #484848;
+                            font-weight: 600;
+                            font-size: 16px;
+
+                        }
+
+                    }
+                }
+
+                .settings {
+                    .settings-title{
+                        font-size: 16px;
+                        font-weight: 500;
+                        color: #484848;
+                    }
+                    ul{
+                        list-style: none;
+                        padding: 0;
+                        li{
+                            font-size: 16px;
+                            font-weight: 500;
+                        }
+                        .logout{
+                            border-top: 1px solid grey;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.moveBack{
+    background: transparent;
+    display: flex;
+    border: 1px solid #181818A8;
+    padding: 8px 10px;
+    border-radius: 2px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #181818;
+    line-height: 20.48px;
+}

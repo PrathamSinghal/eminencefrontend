@@ -1,0 +1,57 @@
+@import "../../../assets/scss/custom";
+
+.wrapper-sidebar {
+  .container-sidebar {
+    margin-top: 50px;
+    padding-top: 40px;
+    background: rgba(230, 246, 250, 1);
+    position: fixed;
+    height: 140%;
+    // overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 0px !important;
+    z-index: 1;
+
+
+    .menu {
+      .menu-item {
+        color: $defaultTextColor;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 17.92px;
+        border-radius: 8px !important;
+      }
+
+      .menu-item:hover {
+        background-color: #c8ecf4;
+      }
+    }
+  }
+}
+
+.accordion {
+  &-item {
+    background: transparent !important;
+    border: none !important;
+  }
+  &-button {
+    background: transparent;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 14px;
+    font-weight: 500;
+    color: $defaultTextColor;
+  }
+}
+
+.active-menu {
+  background-color: #c8ecf4 !important;
+}
+.active-menu-parent {
+  color: $defaultTextColor;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17.92px;
+  border-radius: 8px !important;
+  background-color: #c8ecf4 !important;
+}

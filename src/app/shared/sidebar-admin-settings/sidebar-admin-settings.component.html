@@ -1,0 +1,40 @@
+<div class="wrapper-sidebar">
+  <div class="container-sidebar">
+    <div
+      class="d-flex flex-column flex-shrink-0 p-3"
+      style="width: 300px; height: 100vh"
+    >
+      <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                  <svg class="bi pe-none me-2" width="40" height="32">
+                      <use xlink:href="#bootstrap"></use>
+                  </svg>
+                  <span class="fs-4 text-black">Eminence</span>
+              </a> -->
+      <div class="title-group mb-3">
+        <span><img src="assets/images/icons/gear.svg" alt="" /></span>
+        <span class="d-inline-block ms-2">Admin Settings</span>
+      </div>
+      <ul class="nav nav-pills menu flex-column mb-2">
+        @for (menu of sideMenu; track $index) {
+        <li class="nav-item ms-1 me-1">
+          <a
+            class="nav-link menu-item pointer ps-1 p-3 mb-2"
+            aria-current="page"
+            (click)="moveTo(menu?.path)"
+            [ngClass]="{'active-menu': activeMenu === menu?.path}" (click)="setActiveMenu(menu?.path)"
+          >
+            <img
+              [src]="'assets/images/icons/' + menu.icon"
+              alt=""
+              height="16px"
+              width="16px"
+              class="ms-2"
+            />
+            {{ menu?.name }}
+          </a>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>
