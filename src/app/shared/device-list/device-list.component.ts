@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { DepartmentService } from '../../services/department.service';
 import { UsermangementService } from '../../services/usermangement.service';
 import { LoginService } from '../../services/login.service';
 import { SnackbarService } from '../../services/snackbar.service';

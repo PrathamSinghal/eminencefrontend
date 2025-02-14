@@ -1,7 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ArticleService } from '../../../../services/article.service';
 import { Router } from '@angular/router';
 import { SessionService } from '../../../../services/session.service';
 import { FormBuilder } from '@angular/forms';
@@ -108,12 +107,12 @@ export class TasksListComponent implements OnInit {
   debounceTimeout: any
 
   // ========= Popup =======
-  deletePopupDetails: any = "Are you sure you want to delete Advertisements? Deleting them will permanently remove all their data."
-  deletePopupTitle: any = "Delete Advertisements"
+  deletePopupDetails: any = "Are you sure you want to delete Tasks? Deleting them will permanently remove all their data."
+  deletePopupTitle: any = "Delete Tasks"
   deletePopupFlag: boolean = false;
 
 
-  constructor(private _articleService: ArticleService, private _router: Router,
+  constructor(private _router: Router,
     private _sessionService: SessionService, private formBuilder: FormBuilder,
     private _taskService: TaskService, private SnackbarService: SnackbarService) {
     this.rolePath = this._sessionService?.getRolePath;
@@ -233,7 +232,7 @@ export class TasksListComponent implements OnInit {
       payloadsIems.push(res._id);
     });
     let payloads = { ids: payloadsIems };
-    this._taskService?.deleteAdvertisement(payloads).subscribe({
+    this._taskService?.deleteTasks(payloads).subscribe({
       next: (response: any) => {
         this.getAllTasks();
         this.clearResonse();

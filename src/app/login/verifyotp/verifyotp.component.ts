@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   FormGroup,
   FormControl,
@@ -13,28 +13,34 @@ import { SnackbarService } from '../../services/snackbar.service';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrl: './signin.component.scss',
+  selector: 'app-verifyotp',
+  templateUrl: './verifyotp.component.html',
+  styleUrl: './verifyotp.component.scss'
 })
-export class SigninComponent implements OnInit {
+export class VerifyotpComponent implements OnInit {
   isshowPassword: boolean = false;
-  SiginForm: any;
+  VerifyOtpForm: any;
   errorMessage = signal('');
-  rolePath: string = '';
   loginType: String = ''
   loginText: String = ''
+  userId: any = '';
   constructor(
     private _router: Router,
     private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private snackbarService: SnackbarService
-  ) { }
+    private snackbarService: SnackbarService,
+    private activatedRoute: ActivatedRoute,
+
+  ) {
+    this.activatedRoute.paramMap.subscribe((params) => {
+        this.userId = params.get('id');
+    });
+     
+   }
 
   ngOnInit(): void {
-    this.SiginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+    this.VerifyOtpForm = this.formBuilder.group({
+      otp: ['', Validators.required],
     });
     this.checkLoginType()
   }
@@ -42,19 +48,19 @@ export class SigninComponent implements OnInit {
   checkLoginType() {
     const currentUrl = this._router.url;
     switch (true) {
-      case currentUrl.includes('userPanel/signin'):
+      case currentUrl.includes('userPanel/verifyotp'):
         this.loginType = 'user';
         this.loginText = "User"
         break;
-      case currentUrl.includes('userPanel/signin'):
+      case currentUrl.includes('userPanel/verifyotp'):
         this.loginType = 'user';
         this.loginText = "User"
         break;
-      case currentUrl.includes('department/signin'):
+      case currentUrl.includes('department/verifyotp'):
         this.loginType = 'department';
         this.loginText = "Department"
         break;
-      case currentUrl.includes('team/signin'):
+      case currentUrl.includes('team/verifyotp'):
         this.loginType = 'team';
         this.loginText = "Team"
         break;
@@ -65,15 +71,12 @@ export class SigninComponent implements OnInit {
   moveTo(path: string) {
     this._router.navigate([`/userPanel/${path}`]);
   }
-  moveToWithId(data: any = { id: '', url: '' }) {
-    this._router.navigate([`/userPanel/${data?.url}`, data?.id]);
-  }
 
 
 
-  async onSignin() {
-    if (this.SiginForm.invalid) {
-      this.SiginForm.markAllAsTouched();
+  async onVerifyOtp() {
+    if (this.VerifyOtpForm.invalid) {
+      this.VerifyOtpForm.markAllAsTouched();
       this.snackbarService.getMessage('Please Enter Valid Email and Password');
       return;
     } else {
@@ -84,33 +87,19 @@ export class SigninComponent implements OnInit {
 
 
       let payloads = {
-        email: this.SiginForm.get('email').value,
-        password: this.SiginForm.get('password').value,
-        userType: 'departmentAdmin',
-        deviceType: '1',
-        deviceName: navigator.platform,
-        deviceId: deviceId
-
+        otp: this.VerifyOtpForm.get('otp').value.toString(),
+        _id: this.userId
       };
-      this.loginService.loginAdminUser(payloads).subscribe({
+
+      console.log(payloads);
+      this.loginService.verifyOtpUser(payloads).subscribe({
         next: (data: any) => {
-          // if (data.status === 1) {
 
-          console.log(data);
-
-
-          if(data?.data?.user?.isEmailOtpVerified===true) {
             let item_data = JSON.stringify(data);
             sessionStorage.setItem('token', item_data);
-            this._router.navigate(['/userPanel/dashboard'], { replaceUrl: true });
-            if (data?.status === 0) {
-              this.snackbarService.getMessage(data?.message);
-            }
-          } else {
-            console.log(data, "ismeaaya");
-            this.moveToWithId({id: data?.data?.user?._id, url: 'verifyotp'})
-          }
 
+            this._router.navigate(['/userPanel/dashboard'], { replaceUrl: true });
+            this.snackbarService.getMessage(data?.message);
         },
         error: (err) => {
           if (err.error) {

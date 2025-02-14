@@ -22,12 +22,12 @@ export class TaskService {
   updateTask(payload: any, id:any) {
     return this._httpClient.post(`${environment.base}user/private/updateTask/${id}`, payload);
   }
-
-
-
-  deleteAdvertisement(payload: any) {
-    return this._httpClient.post(`${environment.base}admin/private/deleteAdvertisement`, payload);
+  deleteTasks(payload: any) {
+    return this._httpClient.post(`${environment.base}user/private/deleteTask`, payload);
   }
+
+
+
   blockUnblockAdvertisement(payload: any) {
     return this._httpClient.post(`${environment.base}admin/private/blockUnblockAdvertisement`, payload);
   }

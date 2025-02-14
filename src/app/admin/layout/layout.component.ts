@@ -23,7 +23,7 @@ export class LayoutComponent implements OnInit {
 
   updateLayoutVisibility(): void {
     console.log(this._router.url);
-    if (this._router.url.includes('signin') || this._router.url.includes('signup') ) {
+    if (this._router.url.includes('signin') || this._router.url.includes('signup') || this._router.url.includes('verifyotp') ) {
       this.showPortalLayout = false;
     }
     else {

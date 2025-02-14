@@ -19,7 +19,7 @@ import FingerprintJS from '@fingerprintjs/fingerprintjs';
 })
 export class SignupComponent implements OnInit {
   isshowPassword: boolean = false;
-  SiginForm: any;
+  SigupForm: any;
   errorMessage = signal('');
   loginType: String = ''
   loginText: String = ''
@@ -31,9 +31,10 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.SiginForm = this.formBuilder.group({
+    this.SigupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
+      username: ['', Validators.required],
     });
     this.checkLoginType()
   }
@@ -61,11 +62,19 @@ export class SignupComponent implements OnInit {
     }
   }
 
+  moveTo(path: string) {
+    this._router.navigate([`/userPanel/${path}`]);
+  }
+
+  moveToWithId(data: any = { id: '', url: '' }) {
+    this._router.navigate([`/userPanel/${data?.url}`, data?.id]);
+  }
 
 
-  async onSignin() {
-    if (this.SiginForm.invalid) {
-      this.SiginForm.markAllAsTouched();
+
+  async onSignup() {
+    if (this.SigupForm.invalid) {
+      this.SigupForm.markAllAsTouched();
       this.snackbarService.getMessage('Please Enter Valid Email and Password');
       return;
     } else {
@@ -76,24 +85,23 @@ export class SignupComponent implements OnInit {
 
 
       let payloads = {
-        email: this.SiginForm.get('email').value,
-        password: this.SiginForm.get('password').value,
-        userType: 'departmentAdmin',
+        email: this.SigupForm.get('email').value,
+        username: this.SigupForm.get('username').value,
+        password: this.SigupForm.get('password').value,
+        userType: 'user',
         deviceType: '1',
         deviceName: navigator.platform,
         deviceId: deviceId
 
       };
-      this.loginService.loginAdminUser(payloads).subscribe({
+
+      console.log(payloads);
+      this.loginService.signupUser(payloads).subscribe({
         next: (data: any) => {
-          // if (data.status === 1) {
-          let item_data = JSON.stringify(data);
-          sessionStorage.setItem('token', item_data);
-          if (data?.data?.user?.userType === 'user') {
-            this._router.navigate(['/userPanel/dashboard'], { replaceUrl: true });
-          }
-          // }
-          if (data?.status === 0) {
+          console.log(data,"fwefwefwe");
+          this.moveToWithId({id: data?.data?._id, url: 'verifyotp'})
+          // this._router.navigate(['/userPanel/verifyotp'], { replaceUrl: true });
+          if (data?.status === 200) {
             this.snackbarService.getMessage(data?.message);
           }
         },

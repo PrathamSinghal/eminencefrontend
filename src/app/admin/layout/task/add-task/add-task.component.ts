@@ -8,12 +8,10 @@ import {
 } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DepartmentService } from '../../../../services/department.service';
 import { SnackbarService } from '../../../../services/snackbar.service';
 import { LoginService } from '../../../../services/login.service';
 import { SessionService } from '../../../../services/session.service';
 import { SelectionModel } from '@angular/cdk/collections';
-import { ArticleService } from '../../../../services/article.service';
 import { CommonService } from '../../../../services/common.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { format } from 'date-fns';
@@ -114,13 +112,11 @@ export class AddTaskComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private departmentService: DepartmentService,
     private snackbarService: SnackbarService,
     private activatedRoute: ActivatedRoute,
     private _router: Router,
     private loginService: LoginService,
     private sessionService: SessionService,
-    private _articleService: ArticleService,
     private _taskService: TaskService,
     private _commonService: CommonService,
   ) {
@@ -257,22 +253,6 @@ export class AddTaskComponent implements OnInit {
 
     }
 
-  }
-  submitEditPopup(data: any) {
-    this.editPopupFlag = false;
-    let updateCategoryPayload = {
-      lang: data?.lang,
-      title: this.advertisementForm?.value?.categoryName?.trim(),
-      articleCategoryId: this.taskId,
-    };
-    this._articleService.updateCategory(updateCategoryPayload).subscribe({
-      next: (res: any) => {
-        if (res?.status == 200) {
-          this.getTaskById(this.taskId);
-          this.advertisementForm.reset();
-        }
-      },
-    });
   }
 
   getTaskById(id: any) {

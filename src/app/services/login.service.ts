@@ -64,6 +64,34 @@ export class LoginService {
       })
     );
   }
+
+  verifyOtpUser(payloads: any) {
+    return this._httpClient.post(`${environment.base}user/otpVerify`, payloads).pipe(
+      tap((response: any) => {
+        console.log(response);
+        sessionStorage.setItem('token', JSON.stringify(response));
+        const sessionData = sessionStorage.getItem('token');
+        if (sessionData) {
+          const data = JSON.parse(sessionData);
+          this.currentUserDetails = data?.data?.user;
+        }
+        this.currentUserSubject.next(response)
+      })
+    );
+  }
+
+  signupUser(payloads: any) {
+    return this._httpClient.post(`${environment.base}user/signup`, payloads).pipe(
+      tap((response: any) => {
+        console.log(response);
+        // sessionStorage.setItem('token', JSON.stringify(response));
+        // this.loggedinUserSession();
+        this.currentUserSubject.next(response)
+      })
+    );
+  }
+
+
   updateUserPermission(id: any) {
     return this._httpClient.get(`${environment.base}admin/getUserLoginData/${id}`).pipe(
       tap((response: any) => {
